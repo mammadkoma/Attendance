@@ -1,0 +1,16 @@
+﻿@page "/"
+<PageTitle></PageTitle>
+
+<PageTitle>Index</PageTitle>
+
+<div class="mt-5">
+    <button class="btn btn-outline-success mx-5">ورود به سیستم</button>
+    <button @onclick="btnRegister" class="btn btn-outline-primary">ثبت نام</button>
+</div>
+
+@code {
+    private void btnRegister()
+    {
+        _navigationManager.NavigateTo("/register");
+    }
+}

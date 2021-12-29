@@ -1,0 +1,35 @@
+﻿@page "/register"
+
+<PageTitle>ثبت نام</PageTitle>
+
+<EditForm Model="@registerVM" OnValidSubmit="@SubmitForm">
+    <DataAnnotationsValidator />
+    <div class="mb-3 col-xl-6">
+        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.FirstName)" ></MyLabel>
+        <InputText id="@nameof(RegisterVM.FirstName)" @bind-Value="registerVM.FirstName" autofocus class="form-control"></InputText>
+    </div>
+    <div class="mb-3 col-xl-6">
+        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.LastName)"></MyLabel>
+        <InputText id="@nameof(RegisterVM.LastName)" @bind-Value="registerVM.LastName" class="form-control"></InputText>
+    </div>
+    <div class="mb-3 col-xl-6">
+        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.Email)"></MyLabel>
+        <InputText id="@nameof(RegisterVM.Email)" @bind-Value="registerVM.Email" class="form-control text-start" dir="ltr"></InputText>
+    </div>
+    <div class="mb-3 col-xl-6">
+        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.Password)"></MyLabel>
+        <InputText id="@nameof(RegisterVM.Password)" @bind-Value="registerVM.Password" type="password" class="form-control text-start" dir="ltr"></InputText>
+    </div>
+    <button type="submit" class="btn btn-primary my-3">ارسال</button>
+    <ValidationSummary />
+</EditForm>
+
+@code {
+    private RegisterVM registerVM = new();
+
+    private async Task SubmitForm()
+    {
+        Console.WriteLine("HandleValidSubmit called");
+        //var response = await _httpClient.PostAsJsonAsync("api/register", registerVM);
+    }
+}
