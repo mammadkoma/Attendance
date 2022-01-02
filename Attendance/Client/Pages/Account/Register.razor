@@ -1,27 +1,30 @@
-﻿@page "/register"
+﻿@page "/account/register"
 
 <PageTitle>ثبت نام</PageTitle>
 
 <EditForm Model="@registerVM" OnValidSubmit="@SubmitForm">
     <DataAnnotationsValidator />
     <div class="mb-3 col-xl-6">
-        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.FirstName)" ></MyLabel>
+        <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.FirstName)"></MyLabel>
         <InputText id="@nameof(RegisterVM.FirstName)" @bind-Value="registerVM.FirstName" autofocus class="form-control"></InputText>
+        <ValidationMessage For="@(() => registerVM.FirstName)" />
     </div>
     <div class="mb-3 col-xl-6">
         <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.LastName)"></MyLabel>
         <InputText id="@nameof(RegisterVM.LastName)" @bind-Value="registerVM.LastName" class="form-control"></InputText>
+        <ValidationMessage For="@(() => registerVM.LastName)" />
     </div>
     <div class="mb-3 col-xl-6">
         <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.Email)"></MyLabel>
         <InputText id="@nameof(RegisterVM.Email)" @bind-Value="registerVM.Email" class="form-control text-start" dir="ltr"></InputText>
+        <ValidationMessage For="@(() => registerVM.Email)" />
     </div>
     <div class="mb-3 col-xl-6">
         <MyLabel TItem="RegisterVM" aspfor="@nameof(RegisterVM.Password)"></MyLabel>
         <InputText id="@nameof(RegisterVM.Password)" @bind-Value="registerVM.Password" type="password" class="form-control text-start" dir="ltr"></InputText>
+        <ValidationMessage For="@(() => registerVM.Password)" />
     </div>
     <button type="submit" class="btn btn-primary my-3">ارسال</button>
-    <ValidationSummary />
 </EditForm>
 
 @code {
@@ -29,7 +32,9 @@
 
     private async Task SubmitForm()
     {
-        Console.WriteLine("HandleValidSubmit called");
+        var response = await _httpClient.PostAsJsonAsync("api/accounts/register", registerVM);
+        if (response.IsSuccessStatusCode)
+            _navigationManager.NavigateTo("account/login");
         //var response = await _httpClient.PostAsJsonAsync("api/register", registerVM);
     }
 }

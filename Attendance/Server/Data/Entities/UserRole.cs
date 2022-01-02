@@ -2,7 +2,7 @@
 
 namespace Attendance.Server.Data.Entities;
 
-public class UserRole : IdentityUserRole<int>
+public partial class UserRole : IdentityUserRole<int>
 {
-
+    public int Id { get; set; }
 }

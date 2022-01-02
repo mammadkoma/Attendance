@@ -2,7 +2,7 @@
 
 namespace Attendance.Server.Data.Entities;
 
-public class UserLogin : IdentityUserLogin<int>
+public partial class UserLogin : IdentityUserLogin<int>
 {
-
+    public int Id { get; set; }
 }
