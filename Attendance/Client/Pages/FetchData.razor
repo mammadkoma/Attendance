@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
-@using Attendance.Shared
+
+@attribute [Authorize]
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>

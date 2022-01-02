@@ -3,10 +3,16 @@
 
 <PageTitle>Index</PageTitle>
 
-<div class="mt-5">
-    <button class="btn btn-outline-success mx-5">ورود به سیستم</button>
-    <button @onclick="btnRegister" class="btn btn-outline-primary">ثبت نام</button>
+@*<div class="h-100 d-flex justify-content-center align-items-center">
+    <button class="btn btn-outline-success mx-2 center-block">ورود به سیستم</button>
+    <button @onclick="btnRegister" class="btn btn-outline-primary mx-2 center-block">ثبت نام</button>
+    </div>*@
+
+<div class="d-flex align-items-center justify-content-center min" style="height: 50vh">
+    <button class="btn btn-outline-success mx-2">ورود به سیستم</button>
+    <button @onclick="btnRegister" class="btn btn-outline-primary mx-2" style="width:123.44px">ثبت نام</button>
 </div>
+
 
 @code {
     private void btnRegister()

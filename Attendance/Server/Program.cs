@@ -1,4 +1,4 @@
-using BlazorWasm.Server.Config;
+using BlazorWasm.Server.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 

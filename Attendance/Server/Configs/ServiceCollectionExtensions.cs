@@ -1,7 +1,7 @@
 ﻿using Attendance.Server.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorWasm.Server.Config;
+namespace BlazorWasm.Server.Configs;
 
 internal static class ServiceCollectionExtensions
 {
