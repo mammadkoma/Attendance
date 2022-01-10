@@ -9,11 +9,11 @@ public class TestAuthStateProvider : AuthenticationStateProvider
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, "mk"),
+            new Claim(ClaimTypes.Name, "محمد کمائی"),
             new Claim(ClaimTypes.Role, "Admin")
         };
-        //var anonymous = new ClaimsIdentity(claims, "a");
-        var anonymous = new ClaimsIdentity();
+        var anonymous = new ClaimsIdentity(claims, "a");
+        //var anonymous = new ClaimsIdentity();
         return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(anonymous)));
     }
 }

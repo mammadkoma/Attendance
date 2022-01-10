@@ -1,0 +1,14 @@
+﻿<AuthorizeView>
+    <Authorized>
+        @context.User.Identity.Name
+        <a class="mx-5" href="Logout">خروج</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="account/register" class="btn btn-outline-primary mx-2" style="width:123.44px">ثبت نام</a>
+        <a href="account/login" class="btn btn-outline-success mx-2">ورود به سیستم</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+}
