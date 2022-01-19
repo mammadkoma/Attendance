@@ -1,5 +1,8 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
+@using System.Text
+@using System.Text.Json
+@using Blazored.LocalStorage
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
@@ -15,3 +18,4 @@
 
 @inject HttpClient _httpClient
 @inject NavigationManager _navigationManager
+@inject ILocalStorageService _localStorage

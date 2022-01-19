@@ -1,7 +1,57 @@
 ﻿@page "/account/login"
 
+<EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light mt-5">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="email" class="col-md-2 col-form-label">Email:</label>
+        <div class="col-md-10">
+            <InputText id="email" class="form-control" @bind-Value="loginVM.Email" />
+            <ValidationMessage For="@(() => loginVM.Email)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-md-2 col-form-label">Password:</label>
+        <div class="col-md-10">
+            <InputText type="password" id="password" class="form-control" @bind-Value="loginVM.Password" />
+            <ValidationMessage For="@(() => loginVM.Password)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-success">Login</button>
+        </div>
+    </div>
+</EditForm>
+
 <h3>Login</h3>
 
 @code {
+    private LoginVM loginVM = new();
 
+    private async Task SubmitForm()
+    {
+        var response = await _httpClient.PostAsJsonAsync("accounts/login", loginVM);
+        //if (response.IsSuccessStatusCode)
+        //await _localStorage.SetItemAsync("authToken", result.Token);
+        //var loginVM_Json = JsonSerializer.Serialize(loginVM);
+        //var bodyContent = new StringContent(loginVM_Json, Encoding.UTF8, "application/json");
+        //var content = await (await _httpClient.PostAsync("accounts/login", bodyContent)).Content.ReadAsStringAsync();
+        //var loginDto = JsonSerializer.Deserialize<LoginDto>(content);
+        //if (!result.IsSuccessStatusCode)
+        //    return result;
+        //await _localStorage.SetItemAsync("authToken", result.Token);
+        //((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(userForAuthentication.Email);
+        //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Token);
+        //return new AuthResponseDto { IsAuthSuccessful = true };
+
+        //if (!result.IsAuthSuccessful)
+        //{
+        //    Error = result.ErrorMessage;
+        //    ShowAuthError = true;
+        //}
+        //else
+        //{
+        //    NavigationManager.NavigateTo("/");
+        //}
+    }
 }

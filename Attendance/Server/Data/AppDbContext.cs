@@ -2,14 +2,18 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Attendance.Server.Data;
+namespace Server.Data;
 
-public class AppDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
+public class AppDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IUnitOfWork
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+    public Task<int> SaveChangesAsync()
+    {
+        return base.SaveChangesAsync();
     }
+
+    public void MarkAsDeleted<TEntity>(TEntity entity) => base.Entry(entity).State = EntityState.Deleted;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

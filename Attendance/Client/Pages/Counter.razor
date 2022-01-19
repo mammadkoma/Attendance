@@ -5,6 +5,8 @@
 
 <h1>Counter</h1>
 
+
+
 <AuthorizeView Roles="Adminn">
     <Authorized>
         The user: @context.User.FindFirst(ClaimTypes.Name).Value is authorized
@@ -21,6 +23,13 @@
     [CascadingParameter]
     public Task<AuthenticationState> AuthState { get; set; }
     private int currentCount = 0;
+    //private List<User> _roleList = new();
+
+    //protected async override Task OnInitializedAsync()
+    //{
+    //    var response=await _httpClient.GetAsync("api/users/getall");
+    //    var data = await response.ToResult<IEnumerable<User>>();
+    //}
 
     private void IncrementCount()
     {
