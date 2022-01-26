@@ -1,4 +1,5 @@
 ﻿@page "/account/login"
+@using Attendance.Shared.Dtos
 
 <EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light mt-5">
     <DataAnnotationsValidator />
@@ -30,7 +31,10 @@
 
     private async Task SubmitForm()
     {
-        var response = await _httpClient.PostAsJsonAsync("accounts/login", loginVM);
+        var response = await _httpClient.PostAsJsonAsync("api/accounts/login", loginVM);
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<LoginDto>(content);
+        int aaa = 1;
         //if (response.IsSuccessStatusCode)
         //await _localStorage.SetItemAsync("authToken", result.Token);
         //var loginVM_Json = JsonSerializer.Serialize(loginVM);

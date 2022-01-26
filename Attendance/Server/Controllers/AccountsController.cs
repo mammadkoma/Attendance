@@ -18,9 +18,10 @@ public class AccountsController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly IConfigurationSection _jwtSettings;
 
-    public AccountsController(UserManager<User> userManager)
+    public AccountsController(UserManager<User> userManager, IConfiguration configuration)
     {
         _userManager = userManager;
+        _configuration = configuration;
         _jwtSettings = _configuration.GetSection("JwtSettings");
     }
 
@@ -62,7 +63,7 @@ public class AccountsController : ControllerBase
     {
         var claims = new List<Claim>
     {
-        new Claim(ClaimTypes.Name, user.Email)
+        new Claim("UserName", user.Email)
     };
 
         return claims;
