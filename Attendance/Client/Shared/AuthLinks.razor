@@ -1,14 +1,31 @@
 ﻿<AuthorizeView>
     <Authorized>
-        @context.User.Identity.Name
-        <a class="mx-5" href="Logout">خروج</a>
+        @* @context.User.Identity.Name *@
+        @context?.User?.FindFirst("FullName")?.Value
+        <button class="btn btn-outline-danger mx-4" @onclick="LogOut">خروج</button>
     </Authorized>
     <NotAuthorized>
-        <a href="account/register" class="btn btn-outline-primary mx-2" style="width:123.44px">ثبت نام</a>
         <a href="account/login" class="btn btn-outline-success mx-2">ورود به سیستم</a>
+        <a href="account/register" class="btn btn-outline-primary mx-2" style="width:123.44px">ثبت نام</a>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
+    [Inject]
+    public AuthenticationStateProvider _authStateProvider { get; set; }
 
+    @* [Inject]
+        public AuthenticationState _authState { get; set; }
+
+        protected override void OnInitialized()
+        {
+        System.Console.WriteLine(_authState.User);
+        } *@
+
+    private async Task LogOut()
+    {
+        await _localStorage.RemoveItemAsync("authToken");
+        ((AuthStateProvider)_authStateProvider).NotifyLogout();
+        _http.DefaultRequestHeaders.Authorization = null;
+    }
 }

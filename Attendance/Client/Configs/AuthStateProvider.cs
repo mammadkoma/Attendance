@@ -26,14 +26,14 @@ public class AuthStateProvider : AuthenticationStateProvider
         return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), "jwtAuthType")));
     }
 
-    public void NotifyUserAuthentication(string email)
+    public void NotifyLogin(string userName)
     {
-        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, "jwtAuthType"));
+        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim("UserName", userName) }, "jwtAuthType"));
         var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
         NotifyAuthenticationStateChanged(authState);
     }
 
-    public void NotifyUserLogout()
+    public void NotifyLogout()
     {
         var authState = Task.FromResult(_anonymous);
         NotifyAuthenticationStateChanged(authState);

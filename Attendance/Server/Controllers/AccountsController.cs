@@ -61,9 +61,10 @@ public class AccountsController : ControllerBase
     }
     private List<Claim> GetClaims(User user)
     {
-        var claims = new List<Claim>
+        var claims = new List<Claim>()
     {
-        new Claim("UserName", user.Email)
+        new Claim("UserName", user.Email),
+        new Claim("FullName", user.FirstName+" "+user.LastName),
     };
 
         return claims;

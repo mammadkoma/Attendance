@@ -1,61 +1,42 @@
 ﻿@page "/account/login"
 @using Attendance.Shared.Dtos
+@using System.Net.Http.Headers
+<PageTitle>ورود به سیستم</PageTitle>
 
-<EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light mt-5">
+<EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light">
     <DataAnnotationsValidator />
-    <div class="form-group row">
-        <label for="email" class="col-md-2 col-form-label">Email:</label>
-        <div class="col-md-10">
-            <InputText id="email" class="form-control" @bind-Value="loginVM.Email" />
-            <ValidationMessage For="@(() => loginVM.Email)" />
-        </div>
+    <div class="mb-3 col-xl-5">
+        <MyLabel TItem="LoginVM" aspfor="@nameof(loginVM.Email)"></MyLabel>
+        <InputText id="@nameof(loginVM.Email)" @bind-Value="loginVM.Email" class="form-control" dir="ltr"></InputText>
+        <ValidationMessage For="@(() => loginVM.Email)" />
     </div>
-    <div class="form-group row">
-        <label for="password" class="col-md-2 col-form-label">Password:</label>
-        <div class="col-md-10">
-            <InputText type="password" id="password" class="form-control" @bind-Value="loginVM.Password" />
-            <ValidationMessage For="@(() => loginVM.Password)" />
-        </div>
+    <div class="mb-3 col-xl-5">
+        <MyLabel TItem="LoginVM" aspfor="@nameof(loginVM.Password)"></MyLabel>
+        <InputText id="@nameof(loginVM.Password)" @bind-Value="loginVM.Password" type="password" class="form-control"
+            dir="ltr"></InputText>
+        <ValidationMessage For="@(() => loginVM.Password)" />
     </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">Login</button>
-        </div>
+
+    <div>
+        <button type="submit" class="btn btn-success">ارسال</button>
     </div>
 </EditForm>
 
-<h3>Login</h3>
 
 @code {
     private LoginVM loginVM = new();
 
+    [Inject]
+    public AuthenticationStateProvider _authStateProvider { get; set; }
+
     private async Task SubmitForm()
     {
-        var response = await _httpClient.PostAsJsonAsync("api/accounts/login", loginVM);
+        var response = await _http.PostAsJsonAsync("api/accounts/login", loginVM);
         var content = await response.Content.ReadAsStringAsync();
         var result = JsonSerializer.Deserialize<LoginDto>(content);
-        int aaa = 1;
-        //if (response.IsSuccessStatusCode)
-        //await _localStorage.SetItemAsync("authToken", result.Token);
-        //var loginVM_Json = JsonSerializer.Serialize(loginVM);
-        //var bodyContent = new StringContent(loginVM_Json, Encoding.UTF8, "application/json");
-        //var content = await (await _httpClient.PostAsync("accounts/login", bodyContent)).Content.ReadAsStringAsync();
-        //var loginDto = JsonSerializer.Deserialize<LoginDto>(content);
-        //if (!result.IsSuccessStatusCode)
-        //    return result;
-        //await _localStorage.SetItemAsync("authToken", result.Token);
-        //((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(userForAuthentication.Email);
-        //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Token);
-        //return new AuthResponseDto { IsAuthSuccessful = true };
-
-        //if (!result.IsAuthSuccessful)
-        //{
-        //    Error = result.ErrorMessage;
-        //    ShowAuthError = true;
-        //}
-        //else
-        //{
-        //    NavigationManager.NavigateTo("/");
-        //}
+        await _localStorage.SetItemAsync("authToken", result.Token);
+        ((AuthStateProvider)_authStateProvider).NotifyLogin(loginVM.Email);
+        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Token);
+        _navigationManager.NavigateTo("/");
     }
 }

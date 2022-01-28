@@ -5,11 +5,9 @@
 
 <h1>Counter</h1>
 
-
-
-<AuthorizeView Roles="Adminn">
+<AuthorizeView>
     <Authorized>
-        The user: @context.User.FindFirst(ClaimTypes.Name).Value is authorized
+        The user: @context.User.FindFirst("UserName").Value is authorized
     </Authorized>
     <NotAuthorized>
         The User is not authorized
@@ -27,8 +25,8 @@
 
     //protected async override Task OnInitializedAsync()
     //{
-    //    var response=await _httpClient.GetAsync("api/users/getall");
-    //    var data = await response.ToResult<IEnumerable<User>>();
+    // var response=await _httpClient.GetAsync("api/users/getall");
+    // var data = await response.ToResult<IEnumerable<User>>();
     //}
 
     private void IncrementCount()
