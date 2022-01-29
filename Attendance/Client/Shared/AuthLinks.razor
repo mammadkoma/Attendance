@@ -1,7 +1,6 @@
 ﻿<AuthorizeView>
     <Authorized>
-        @* @context.User.Identity.Name *@
-        @context?.User?.FindFirst("FullName")?.Value
+        @context.User.FindFirst("FullName")?.Value
         <button class="btn btn-outline-danger mx-4" @onclick="LogOut">خروج</button>
     </Authorized>
     <NotAuthorized>
@@ -13,14 +12,6 @@
 @code {
     [Inject]
     public AuthenticationStateProvider _authStateProvider { get; set; }
-
-    @* [Inject]
-        public AuthenticationState _authState { get; set; }
-
-        protected override void OnInitialized()
-        {
-        System.Console.WriteLine(_authState.User);
-        } *@
 
     private async Task LogOut()
     {

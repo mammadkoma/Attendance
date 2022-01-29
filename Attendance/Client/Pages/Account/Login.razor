@@ -1,6 +1,7 @@
 ﻿@page "/account/login"
 @using Attendance.Shared.Dtos
 @using System.Net.Http.Headers
+@using System.Security.Claims
 <PageTitle>ورود به سیستم</PageTitle>
 
 <EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light">
@@ -33,10 +34,10 @@
     {
         var response = await _http.PostAsJsonAsync("api/accounts/login", loginVM);
         var content = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<LoginDto>(content);
-        await _localStorage.SetItemAsync("authToken", result.Token);
-        ((AuthStateProvider)_authStateProvider).NotifyLogin(loginVM.Email);
-        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Token);
+        var loginDto = JsonSerializer.Deserialize<LoginDto>(content);
+        await _localStorage.SetItemAsync("authToken", loginDto.Token);
+        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", loginDto.Token);
+        (_authStateProvider as AuthStateProvider).NotifyLogin(loginDto.FullName);
         _navigationManager.NavigateTo("/");
     }
 }

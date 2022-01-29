@@ -18,12 +18,8 @@ internal static class ServiceCollectionExtensions
 
     internal static IServiceCollection AddIdentityAndOptions(this IServiceCollection services)
     {
-        services.AddIdentity<User, Role>(opt =>
-        {
-            opt.Password.RequiredLength = 7;
-            opt.Password.RequireDigit = false;
-            opt.Password.RequireUppercase = false;
-        }).AddEntityFrameworkStores<AppDbContext>();
+        services.AddIdentity<User, Role>()
+            .AddEntityFrameworkStores<AppDbContext>();
 
         services.Configure<IdentityOptions>(options =>
         {

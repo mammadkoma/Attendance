@@ -20,6 +20,11 @@ html, body {
     min-width: 100px;
 }
 
+a.btn {
+    text-decoration: none !important;
+}
+
+
 
 h1:focus {
     outline: none;

@@ -50,8 +50,10 @@ public class AccountsController : ControllerBase
         var claims = GetClaims(user);
         var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
         var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-        return Ok(new LoginDto { Token = token });
+        return Ok(new LoginDto { Token = token, FullName = user.FirstName + " " + user.LastName });
     }
+
+
 
     private SigningCredentials GetSigningCredentials()
     {
@@ -59,6 +61,7 @@ public class AccountsController : ControllerBase
         var secret = new SymmetricSecurityKey(key);
         return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
     }
+
     private List<Claim> GetClaims(User user)
     {
         var claims = new List<Claim>()
@@ -69,6 +72,7 @@ public class AccountsController : ControllerBase
 
         return claims;
     }
+
     private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
     {
         var tokenOptions = new JwtSecurityToken(
