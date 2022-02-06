@@ -1,6 +1,6 @@
-﻿using Attendance.Server.Data.Entities;
+﻿using Attendance.Server.Data;
+using Attendance.Server.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
 
 namespace Attendance.Server.Services
 {

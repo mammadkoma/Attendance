@@ -1,6 +1,6 @@
 using Attendance.Client;
+using Attendance.Client.Configs;
 using Blazored.LocalStorage;
-using Client.Configs;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

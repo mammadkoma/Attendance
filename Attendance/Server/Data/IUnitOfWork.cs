@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Server.Data
+namespace Attendance.Server.Data
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Server.Configs;
+namespace Attendance.Server.Configs;
 
 public static class BadRequestConfig
 {

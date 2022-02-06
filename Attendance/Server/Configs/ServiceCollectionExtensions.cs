@@ -1,12 +1,12 @@
-﻿using Attendance.Server.Data.Entities;
+﻿using Attendance.Server.Data;
+using Attendance.Server.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Server.Data;
 using System.Text;
 
-namespace Server.Configs;
+namespace Attendance.Server.Configs;
 
 internal static class ServiceCollectionExtensions
 {

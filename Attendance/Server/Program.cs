@@ -1,4 +1,4 @@
-using Server.Configs;
+using Attendance.Server.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 

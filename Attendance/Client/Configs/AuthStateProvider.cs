@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace Client.Configs;
+namespace Attendance.Client.Configs;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
