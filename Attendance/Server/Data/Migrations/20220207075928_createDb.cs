@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Attendance.Server.Data.Migrations
+namespace Attendance.Server.data.migrations
 {
-    public partial class userrole : Migration
+    public partial class createDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,17 +165,17 @@ namespace Attendance.Server.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "34ee0808-a96c-46e6-a594-cf775d79583a", "admin", "ADMIN" });
+                values: new object[] { 1, "9fb7cd87-27f1-43b0-af35-a5f0776ba0c6", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "0d61646e-9659-4471-ab3b-f2d67c804f12", "user", "USER" });
+                values: new object[] { 2, "9aeb50bd-009d-416a-a92d-a0e3b82ba0ec", "user", "USER" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Mobile", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "49dbbc16-3875-4eaf-b00d-d40fa5d450db", "komaei@live.com", false, "محمّد", "کمائی", false, null, "KOMAEI@LIVE.COM", "KOMAEI@LIVE.COM", "AQAAAAEAACcQAAAAEGs+PzvWq3N5er5W1r0FLygTFp3HNNadLBXq4d0ZQlVd0ws0cEQAZDS+AJo55SHMcA==", null, false, null, false, "komaei@live.com" });
+                values: new object[] { 1, 0, "48f97a23-9275-4c60-82bf-34ca028d7a12", "komaei@live.com", false, "محمّد", "کمائی", false, null, "KOMAEI@LIVE.COM", "KOMAEI@LIVE.COM", "AQAAAAEAACcQAAAAEA2pXHjhfH67cyIX//W9DkWyh1FYKdxvr24Ks1MVBJsex2ckWRU6P7gRlbghqBmr0g==", null, false, null, false, "komaei@live.com" });
 
             migrationBuilder.InsertData(
                 table: "UserRole",

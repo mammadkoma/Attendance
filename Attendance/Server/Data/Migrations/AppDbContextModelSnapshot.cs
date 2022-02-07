@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Attendance.Server.Data.Migrations
+namespace Attendance.Server.data.migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -59,14 +59,14 @@ namespace Attendance.Server.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "34ee0808-a96c-46e6-a594-cf775d79583a",
+                            ConcurrencyStamp = "9fb7cd87-27f1-43b0-af35-a5f0776ba0c6",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0d61646e-9659-4471-ab3b-f2d67c804f12",
+                            ConcurrencyStamp = "9aeb50bd-009d-416a-a92d-a0e3b82ba0ec",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -193,7 +193,7 @@ namespace Attendance.Server.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "49dbbc16-3875-4eaf-b00d-d40fa5d450db",
+                            ConcurrencyStamp = "48f97a23-9275-4c60-82bf-34ca028d7a12",
                             Email = "komaei@live.com",
                             EmailConfirmed = false,
                             FirstName = "محمّد",
@@ -201,7 +201,7 @@ namespace Attendance.Server.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KOMAEI@LIVE.COM",
                             NormalizedUserName = "KOMAEI@LIVE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGs+PzvWq3N5er5W1r0FLygTFp3HNNadLBXq4d0ZQlVd0ws0cEQAZDS+AJo55SHMcA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA2pXHjhfH67cyIX//W9DkWyh1FYKdxvr24Ks1MVBJsex2ckWRU6P7gRlbghqBmr0g==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "komaei@live.com"
