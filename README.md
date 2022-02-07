@@ -1,5 +1,5 @@
 # Attendance
-A templated project for asp.net core 6 blazor wasm.
+A templated project for asp.net core 6 blazor wasm. (Persian and RTL)
 
 1. Download the project
 2. Open it by Visual Studio 2022 or VS Code
