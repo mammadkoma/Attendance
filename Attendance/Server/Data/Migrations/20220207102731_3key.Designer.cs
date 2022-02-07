@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Attendance.Server.data.migrations
+namespace Attendance.Server.data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220207075928_createDb")]
-    partial class createDb
+    [Migration("20220207102731_3key")]
+    partial class _3key
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,14 +61,14 @@ namespace Attendance.Server.data.migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "9fb7cd87-27f1-43b0-af35-a5f0776ba0c6",
+                            ConcurrencyStamp = "b8603241-f1f8-4a95-9bd9-03059ab2b9de",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "9aeb50bd-009d-416a-a92d-a0e3b82ba0ec",
+                            ConcurrencyStamp = "2885109b-c384-41ac-adaf-4a6357a0e5b7",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -195,7 +195,7 @@ namespace Attendance.Server.data.migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "48f97a23-9275-4c60-82bf-34ca028d7a12",
+                            ConcurrencyStamp = "9b5fe217-7205-44c9-b705-be680afe9171",
                             Email = "komaei@live.com",
                             EmailConfirmed = false,
                             FirstName = "محمّد",
@@ -203,7 +203,7 @@ namespace Attendance.Server.data.migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KOMAEI@LIVE.COM",
                             NormalizedUserName = "KOMAEI@LIVE.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA2pXHjhfH67cyIX//W9DkWyh1FYKdxvr24Ks1MVBJsex2ckWRU6P7gRlbghqBmr0g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC2UYe2WTV3nuWtlpy18HM4Su3UwMTRESchHf/kEzI+mUzgYJHbB8ig+7JayAJZPDA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "komaei@live.com"
@@ -260,6 +260,12 @@ namespace Attendance.Server.data.migrations
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.UserRole", b =>
                 {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -267,26 +273,18 @@ namespace Attendance.Server.data.migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserRole", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            UserId = 1,
                             RoleId = 1,
-                            UserId = 1
+                            Id = 1
                         });
                 });
 

@@ -9,6 +9,8 @@ public class UserRoleConfig : IEntityTypeConfiguration<UserRole>
     public void Configure(EntityTypeBuilder<UserRole> builder)
     {
         builder.ToTable("UserRole").HasKey(ur => new { ur.Id });
+        builder.Property(p => p.Id).ValueGeneratedOnAdd();
+        builder.HasKey(u => new { u.UserId, u.RoleId });
         builder.Property(p => p.Id).HasColumnOrder(1);
 
         // seed

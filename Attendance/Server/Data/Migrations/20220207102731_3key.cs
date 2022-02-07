@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Attendance.Server.data.migrations
+namespace Attendance.Server.data.Migrations
 {
-    public partial class createDb : Migration
+    public partial class _3key : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,7 +147,7 @@ namespace Attendance.Server.data.migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRole", x => x.Id);
+                    table.PrimaryKey("PK_UserRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
                         name: "FK_UserRole_Role_RoleId",
                         column: x => x.RoleId,
@@ -165,21 +165,21 @@ namespace Attendance.Server.data.migrations
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "9fb7cd87-27f1-43b0-af35-a5f0776ba0c6", "admin", "ADMIN" });
+                values: new object[] { 1, "b8603241-f1f8-4a95-9bd9-03059ab2b9de", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "9aeb50bd-009d-416a-a92d-a0e3b82ba0ec", "user", "USER" });
+                values: new object[] { 2, "2885109b-c384-41ac-adaf-4a6357a0e5b7", "user", "USER" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Mobile", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "48f97a23-9275-4c60-82bf-34ca028d7a12", "komaei@live.com", false, "محمّد", "کمائی", false, null, "KOMAEI@LIVE.COM", "KOMAEI@LIVE.COM", "AQAAAAEAACcQAAAAEA2pXHjhfH67cyIX//W9DkWyh1FYKdxvr24Ks1MVBJsex2ckWRU6P7gRlbghqBmr0g==", null, false, null, false, "komaei@live.com" });
+                values: new object[] { 1, 0, "9b5fe217-7205-44c9-b705-be680afe9171", "komaei@live.com", false, "محمّد", "کمائی", false, null, "KOMAEI@LIVE.COM", "KOMAEI@LIVE.COM", "AQAAAAEAACcQAAAAEC2UYe2WTV3nuWtlpy18HM4Su3UwMTRESchHf/kEzI+mUzgYJHbB8ig+7JayAJZPDA==", null, false, null, false, "komaei@live.com" });
 
             migrationBuilder.InsertData(
                 table: "UserRole",
-                columns: new[] { "Id", "RoleId", "UserId" },
+                columns: new[] { "RoleId", "UserId", "Id" },
                 values: new object[] { 1, 1, 1 });
 
             migrationBuilder.CreateIndex(
@@ -218,11 +218,6 @@ namespace Attendance.Server.data.migrations
                 name: "IX_UserRole_RoleId",
                 table: "UserRole",
                 column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserRole_UserId",
-                table: "UserRole",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

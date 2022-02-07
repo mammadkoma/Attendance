@@ -29,14 +29,8 @@ public class AccountsController : ControllerBase
     public async Task<IActionResult> Register(RegisterVM model)
     {
         var user = new User { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email };
-
-        var result = await _userManager.CreateAsync(user, model.Password);
-
-        if (!result.Succeeded)
-        {
-            return BadRequest(new ResultDto { Message = string.Join(" , ", result.Errors.Select(e => e.Description)) });
-        }
-
+        await _userManager.CreateAsync(user, model.Password);
+        await _userManager.AddToRoleAsync(user, "user");
         return StatusCode(201);
     }
 
