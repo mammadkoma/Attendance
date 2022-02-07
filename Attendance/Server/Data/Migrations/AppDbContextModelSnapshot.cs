@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Attendance.Server.data.migrations
+namespace Attendance.Server.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -32,24 +32,44 @@ namespace Attendance.Server.data.migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "34ee0808-a96c-46e6-a594-cf775d79583a",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "0d61646e-9659-4471-ab3b-f2d67c804f12",
+                            Name = "user",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.RoleClaim", b =>
@@ -73,7 +93,7 @@ namespace Attendance.Server.data.migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaim", (string)null);
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.User", b =>
@@ -167,6 +187,25 @@ namespace Attendance.Server.data.migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "49dbbc16-3875-4eaf-b00d-d40fa5d450db",
+                            Email = "komaei@live.com",
+                            EmailConfirmed = false,
+                            FirstName = "محمّد",
+                            LastName = "کمائی",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "KOMAEI@LIVE.COM",
+                            NormalizedUserName = "KOMAEI@LIVE.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGs+PzvWq3N5er5W1r0FLygTFp3HNNadLBXq4d0ZQlVd0ws0cEQAZDS+AJo55SHMcA==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "komaei@live.com"
+                        });
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.UserClaim", b =>
@@ -190,7 +229,7 @@ namespace Attendance.Server.data.migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaim", (string)null);
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.UserLogin", b =>
@@ -214,25 +253,39 @@ namespace Attendance.Server.data.migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogin", (string)null);
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.UserRole", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserRole", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.UserToken", b =>
@@ -254,7 +307,7 @@ namespace Attendance.Server.data.migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserToken", (string)null);
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Attendance.Server.Data.Entities.RoleClaim", b =>
