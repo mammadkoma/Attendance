@@ -4,6 +4,8 @@
 @using System.Security.Claims
 <PageTitle>ورود به سیستم</PageTitle>
 
+@*پوش تست*@
+
 <EditForm Model="loginVM" OnValidSubmit="SubmitForm" class="card card-body bg-light">
     <DataAnnotationsValidator />
     <div class="mb-3 col-xl-5">
@@ -14,7 +16,7 @@
     <div class="mb-3 col-xl-5">
         <MyLabel TItem="LoginVM" aspfor="@nameof(loginVM.Password)"></MyLabel>
         <InputText id="@nameof(loginVM.Password)" @bind-Value="loginVM.Password" type="password" class="form-control"
-            dir="ltr"></InputText>
+                   dir="ltr"></InputText>
         <ValidationMessage For="@(() => loginVM.Password)" />
     </div>
 
