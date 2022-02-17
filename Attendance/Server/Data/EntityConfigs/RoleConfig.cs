@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Attendance.Server.Data.Configs;
+namespace Attendance.Server.Data.EntityConfigs;
 
 public class RoleConfig : IEntityTypeConfiguration<Role>
 {

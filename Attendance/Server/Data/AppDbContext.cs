@@ -1,5 +1,5 @@
-﻿using Attendance.Server.Data.Configs;
-using Attendance.Server.Data.Entities;
+﻿using Attendance.Server.Data.Entities;
+using Attendance.Server.Data.EntityConfigs;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

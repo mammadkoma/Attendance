@@ -35,9 +35,9 @@
         var response = await _http.PostAsJsonAsync("api/accounts/login", loginVM);
         var content = await response.Content.ReadAsStringAsync();
         var loginDto = JsonSerializer.Deserialize<LoginDto>(content);
-        await _localStorage.SetItemAsync("authToken", loginDto.Token);
+        await _localStorage.SetItemAsync("token", loginDto.Token);
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", loginDto.Token);
-        (_authStateProvider as AuthStateProvider).NotifyLogin(loginDto.FullName);
+        (_authStateProvider as AuthStateProvider).NotifyLogin(loginDto.Token);
         _navigationManager.NavigateTo("/");
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Attendance.Server.Data.Configs;
+namespace Attendance.Server.Data.EntityConfigs;
 
 public class UserConfig : IEntityTypeConfiguration<User>
 {

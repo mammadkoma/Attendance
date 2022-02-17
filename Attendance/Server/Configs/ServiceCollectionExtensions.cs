@@ -18,8 +18,7 @@ internal static class ServiceCollectionExtensions
 
     internal static IServiceCollection AddIdentityAndOptions(this IServiceCollection services)
     {
-        services.AddIdentity<User, Role>()
-            .AddEntityFrameworkStores<AppDbContext>();
+        services.AddIdentity<User, Role>().AddEntityFrameworkStores<AppDbContext>();
 
         services.Configure<IdentityOptions>(options =>
         {

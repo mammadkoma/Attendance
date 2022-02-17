@@ -15,7 +15,7 @@
 
     private async Task LogOut()
     {
-        await _localStorage.RemoveItemAsync("authToken");
+        await _localStorage.RemoveItemAsync("token");
         ((AuthStateProvider)_authStateProvider).NotifyLogout();
         _http.DefaultRequestHeaders.Authorization = null;
     }

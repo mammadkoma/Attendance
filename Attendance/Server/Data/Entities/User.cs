@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Attendance.Server.Data.Entities;
 
@@ -9,8 +8,8 @@ public class User : IdentityUser<int>
     public string LastName { get; set; }
 
 
-    [NotMapped]
-    public override string UserName { get; set; }
-    [NotMapped]
-    public override string NormalizedUserName { get; set; }
+    //[NotMapped]
+    //public override string UserName { get; set; }
+    //[NotMapped]
+    //public override string NormalizedUserName { get; set; }
 }
