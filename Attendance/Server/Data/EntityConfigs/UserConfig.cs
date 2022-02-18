@@ -22,18 +22,16 @@ public class UserConfig : IEntityTypeConfiguration<User>
         builder.Property(p => p.ConcurrencyStamp).IsUnicode(false);
         builder.Property(p => p.PhoneNumber).HasColumnName("Mobile").IsUnicode(false).HasMaxLength(11).IsFixedLength(true);
 
-        builder.HasData(
-            new User
-            {
-                Id = 1, // primary key
-                FirstName = "محمّد",
-                LastName = "کمائی",
-                UserName = "komaei@live.com",
-                NormalizedUserName = "KOMAEI@LIVE.COM",
-                Email = "komaei@live.com",
-                NormalizedEmail = "KOMAEI@LIVE.COM",
-                PasswordHash = hasher.HashPassword(null, "mK@12345")
-            }
-        );
+        builder.HasData(new User
+        {
+            Id = 1, // primary key
+            FirstName = "محمّد",
+            LastName = "کمائی",
+            UserName = "komaei@live.com",
+            NormalizedUserName = "KOMAEI@LIVE.COM",
+            Email = "komaei@live.com",
+            NormalizedEmail = "KOMAEI@LIVE.COM",
+            PasswordHash = hasher.HashPassword(null, "mK@12345")
+        });
     }
 }

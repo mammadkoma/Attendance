@@ -18,7 +18,8 @@ public class AccountsController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly IConfigurationSection _jwtSettings;
 
-    public AccountsController(UserManager<User> userManager, IConfiguration configuration)
+    public AccountsController(UserManager<User> userManager, IConfiguration configuration
+        )
     {
         _userManager = userManager;
         _configuration = configuration;
@@ -66,18 +67,19 @@ public class AccountsController : ControllerBase
     private async Task<List<Claim>> GetClaimsAsync(User user)
     {
         var claims = new List<Claim>()
-    {
-        new Claim("UserName", user.Email),
-        new Claim("FullName", user.FirstName+" "+user.LastName),
-    };
+        {
+            new Claim("UserName", user.Email),
+            new Claim("FullName", user.FirstName+" "+user.LastName),
+        };
         var roles = await _userManager.GetRolesAsync(user);
         foreach (var role in roles)
-            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim("roles", role));
 
         return claims;
     }
 
-    private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
+    private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims
+        )
     {
         var tokenOptions = new JwtSecurityToken(
             issuer: _jwtSettings["validIssuer"],

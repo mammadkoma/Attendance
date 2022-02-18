@@ -20,8 +20,6 @@ public class AppDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRo
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfig).Assembly);
-        //modelBuilder.Entity<RoleClaim>(entity => { entity.ToTable("RoleClaim"); });
-        //modelBuilder.Entity<UserClaim>(entity => { entity.ToTable("UserClaim"); });
         //modelBuilder.Entity<UserLogin>(entity => { entity.ToTable("UserLogin"); });
         //modelBuilder.Entity<UserToken>(entity => { entity.ToTable("UserToken"); });
     }
