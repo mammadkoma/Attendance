@@ -8,7 +8,7 @@ builder.Services.AddIdentityAndOptions();
 builder.Services.AddJwt(builder.Configuration);
 builder.Services.AddControllers()
     .AddJsonOptions(op => { op.JsonSerializerOptions.PropertyNamingPolicy = null; }).AddBadRequestServices();
-builder.Services.AddRazorPages();
+//builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -29,7 +29,7 @@ app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
-app.MapRazorPages();
+//app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 app.Run();
