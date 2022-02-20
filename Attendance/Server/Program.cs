@@ -6,12 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDataBase(builder.Configuration);
 builder.Services.AddIdentityAndOptions();
 builder.Services.AddJwt(builder.Configuration);
-builder.Services.AddControllers().AddJsonOptions(op => { op.JsonSerializerOptions.PropertyNamingPolicy = null; }).AddBadRequestServices();
+builder.Services.AddControllers()
+    .AddJsonOptions(op => { op.JsonSerializerOptions.PropertyNamingPolicy = null; }).AddBadRequestServices();
 builder.Services.AddRazorPages();
 
-
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

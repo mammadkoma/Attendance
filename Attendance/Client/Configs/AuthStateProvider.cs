@@ -63,18 +63,18 @@ public class AuthStateProvider : AuthenticationStateProvider
 
     private static void ExtractRolesFromToken(List<Claim> claims, Dictionary<string, object> keyValuePairs)
     {
-        keyValuePairs.TryGetValue("roles", out object roles);
+        keyValuePairs.TryGetValue("Roles", out object roles);
         if (roles != null)
         {
             var parsedRoles = roles.ToString().Trim().TrimStart('[').TrimEnd(']').Split(',');
             if (parsedRoles.Length > 1)
             {
                 foreach (var parsedRole in parsedRoles)
-                    claims.Add(new Claim("roles", parsedRole.Trim('"')));
+                    claims.Add(new Claim("Roles", parsedRole.Trim('"')));
             }
             else
-                claims.Add(new Claim("roles", parsedRoles[0]));
-            keyValuePairs.Remove("roles");
+                claims.Add(new Claim("Roles", parsedRoles[0]));
+            keyValuePairs.Remove("Roles");
         }
     }
 }

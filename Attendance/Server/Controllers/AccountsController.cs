@@ -73,7 +73,7 @@ public class AccountsController : ControllerBase
         };
         var roles = await _userManager.GetRolesAsync(user);
         foreach (var role in roles)
-            claims.Add(new Claim("roles", role));
+            claims.Add(new Claim("Roles", role));
 
         return claims;
     }

@@ -1,7 +1,7 @@
 ﻿<AuthorizeView>
     <Authorized>
         <span class="mx-1">@context.User.FindFirst("FullName")?.Value</span>
-        <span class="mx-1">@context.User.FindFirst("roles")?.Value</span>
+        @*<span class="mx-1">@context.User.FindFirst("Roles")?.Value</span>*@
         <button class="btn btn-outline-danger mx-4" @onclick="LogOut">خروج</button>
     </Authorized>
     <NotAuthorized>
