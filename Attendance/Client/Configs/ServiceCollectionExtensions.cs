@@ -6,8 +6,8 @@ internal static class ServiceCollectionExtensions
     {
         services.AddAuthorizationCore(config =>
         {
-            config.AddPolicy("admin", policy => policy.RequireClaim("Roles", "admin"));
-            config.AddPolicy("user", policy => policy.RequireClaim("Roles", "user"));
+            //config.AddPolicy("admin", policy => policy.RequireClaim("Roles", "admin"));
+            //config.AddPolicy("user", policy => policy.RequireClaim("Roles", "user"));
         });
 
         return services;

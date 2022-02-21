@@ -1,6 +1,6 @@
 ﻿@page "/fetchdata"
 
-@attribute [Authorize(Policy = "admin")]
+@attribute [Authorize(Roles = "admin")]
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>

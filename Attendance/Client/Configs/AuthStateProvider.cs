@@ -24,12 +24,12 @@ public class AuthStateProvider : AuthenticationStateProvider
         if (string.IsNullOrWhiteSpace(token))
             return _authenticationState;
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-        return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromToken(token), "jwtAuthType")));
+        return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromToken(token), "jwtAuthType", ClaimTypes.Name, "Roles")));
     }
 
     public void NotifyLogin(string token)
     {
-        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromToken(token), "jwtAuthType"));
+        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromToken(token), "jwtAuthType", ClaimTypes.Name, "Roles"));
         var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
         NotifyAuthenticationStateChanged(authState);
     }

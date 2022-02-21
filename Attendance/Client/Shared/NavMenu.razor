@@ -14,7 +14,7 @@
                 <span class="oi oi-home" aria-hidden="true"></span>داشبورد
             </NavLink>
         </div>
-        <AuthorizeView Policy="user">
+        <AuthorizeView Roles="user">
             <Authorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="counter">
@@ -23,7 +23,7 @@
                 </div>
             </Authorized>
         </AuthorizeView>
-        <AuthorizeView Policy="admin">
+        <AuthorizeView Roles="admin">
             <Authorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="fetchdata">
