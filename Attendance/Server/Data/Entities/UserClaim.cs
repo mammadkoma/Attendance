@@ -4,5 +4,5 @@ namespace Attendance.Server.Data.Entities;
 
 public partial class UserClaim : IdentityUserClaim<int>
 {
-    public int Id { get; set; }
+    override public int Id { get; set; }
 }
