@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Attendance.Server.Controllers;
+namespace Server.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -28,13 +28,7 @@ public class AccountsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Register(RegisterVM model)
     {
-        var user = new User
-        {
-            FirstName = model.FirstName,
-            LastName = model.LastName,
-            UserName = model.Email,
-            Email = model.Email
-        };
+        var user = new User { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email };
         await _userManager.CreateAsync(user, model.Password);
         await _userManager.AddToRoleAsync(user, "user");
         return StatusCode(201);
@@ -46,9 +40,8 @@ public class AccountsController : ControllerBase
         var user = await _userManager.FindByNameAsync(model.Email);
         if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
             return Unauthorized("ایمیل یا پسورد اشتباه است.");
-
         var signingCredentials = GetSigningCredentials();
-        var claims = await GetClaimsAsync(user);
+        var claims = GetClaims(user);
         var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
         var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         return Ok(new LoginDto { Token = token, FullName = user.FirstName + " " + user.LastName });
@@ -63,16 +56,13 @@ public class AccountsController : ControllerBase
         return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
     }
 
-    private async Task<List<Claim>> GetClaimsAsync(User user)
+    private List<Claim> GetClaims(User user)
     {
         var claims = new List<Claim>()
-        {
-            new Claim("UserName", user.Email),
-            new Claim("FullName", user.FirstName+" "+user.LastName),
-        };
-        var roles = await _userManager.GetRolesAsync(user);
-        foreach (var role in roles)
-            claims.Add(new Claim("Roles", role));
+    {
+        new Claim("UserName", user.Email),
+        new Claim("FullName", user.FirstName+" "+user.LastName),
+    };
 
         return claims;
     }

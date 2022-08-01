@@ -6,7 +6,7 @@ namespace Tests.Configs;
 
 public class AppDbContextFixture
 {
-    private static readonly object _lock = new();
+    private static readonly object _lock = new(); //
     private static bool _databaseInitialized;
 
     public AppDbContextFixture()

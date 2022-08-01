@@ -1,7 +1,4 @@
-﻿using Attendance.Server.Services;
-using Tests.Configs;
-
-namespace Tests;
+﻿namespace Tests;
 
 public class UsersControllerTest : IClassFixture<AppDbContextFixture>
 {
