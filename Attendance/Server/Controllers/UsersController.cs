@@ -1,6 +1,3 @@
-using Attendance.Server.Services;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Attendance.Server.Controllers;
 
 [ApiController]
@@ -17,6 +14,7 @@ public class UsersController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _userService.GetAll());
+        var result = await _userService.GetAll();
+        return Ok(result);
     }
 }
